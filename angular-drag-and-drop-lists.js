@@ -277,6 +277,7 @@ angular.module('dndLists', [])
         // At this point we invoke the callback, which still can disallow the drop.
         // We can't do this earlier because we want to pass the index of the placeholder.
         if (attr.dndDragover && !invokeCallback(attr.dndDragover, event)) {
+          element.addClass("dndDropDisabled");
           return stopDragover();
         }
 
@@ -355,6 +356,7 @@ angular.module('dndLists', [])
         event = event.originalEvent || event;
 
         element.removeClass("dndDragover");
+        element.removeClass("dndDropDisabled");
         $timeout(function() {
           if (!element.hasClass("dndDragover")) {
             placeholder.remove();
